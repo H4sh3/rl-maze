@@ -4,12 +4,11 @@ let statistic
 setup = () => {
     createCanvas(800, 800)
     environment = new Environment()
-    environment.reset()
+    environment.init()
     statistic = new Statistic(environment.getProperties())
 }
 
 draw = () => {
-
     if (environment.e < 50 || environment.e % 25 !== 1) {
         while (environment.running()) {
             environment.run()
