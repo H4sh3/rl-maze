@@ -109,3 +109,9 @@ drawTargets = (targets, bW, bH) => {
         ellipse(bW * 0.5 + (b.n * bW), bH * 0.5 + (b.m * bH), 15, 15)
     }
 }
+
+drawAgent = (pos, size) => {
+    noStroke()
+    fill(0)
+    rect(pos.x - size / 2, pos.y - size / 2, size, size)
+}

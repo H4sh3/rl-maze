@@ -50,7 +50,7 @@ class Environment {
         drawMatrix(...this.ratingMatrix.getDrawParams())
         drawTargets(this.targets, this.ratingMatrix.blockWidth, this.ratingMatrix.blockHeight)
         drawBoxes(this.boxes)
-        this.agent.draw()
+        drawAgent(this.agent.pos, this.agent.size)
     }
 
     stringifyTargets() {
