@@ -3,13 +3,6 @@ class Box {
         this.pos = createVector(x, y)
         this.size = { x: width, y: height }
     }
-
-    draw() {
-        stroke(0)
-        fill(120, 120, 120)
-        strokeWeight(3)
-        rect(this.pos.x, this.pos.y, this.size.x, this.size.y)
-    }
 }
 
 initBoxes = (width,height,bW,bH) => {

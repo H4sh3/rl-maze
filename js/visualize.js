@@ -98,7 +98,7 @@ getMinRmaxR = (arr) => {
 // boxes
 drawBoxes = (boxes) => {
     for (let b of boxes) {
-        b.draw()
+        drawBox(b.pos, b.size)
     }
 }
 
@@ -108,6 +108,13 @@ drawTargets = (targets, bW, bH) => {
         noStroke()
         ellipse(bW * 0.5 + (b.n * bW), bH * 0.5 + (b.m * bH), 15, 15)
     }
+}
+
+drawBox = (pos, size) => {
+    stroke(0)
+    fill(120, 120, 120)
+    strokeWeight(3)
+    rect(pos.x, pos.y, size.x, size.y)
 }
 
 drawAgent = (pos, size) => {
