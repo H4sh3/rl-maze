@@ -8,28 +8,22 @@ class RatingMatrix {
         this.minReward = 0
     }
 
-    setRewardAtPos(pos, action, reward, targets) {
+    setRewardAtPos(pos, action, reward) {
         this.maxReward = reward > this.maxReward ? reward : this.maxReward
         this.minReward = reward < this.minReward ? reward : this.minReward
         const { n, m } = this.getCordsForPos(pos)
-
         this.matrix[n][m][action] = reward
     }
 
 
-    getMatrixAtPos(pos, targets) {
+    getMatrixAtPos(pos) {
         const { n, m } = this.getCordsForPos(pos)
         return this.matrix[n][m]
     }
 
     getHighestRewardAtPos(pos) {
         const { n, m } = this.getCordsForPos(pos)
-
         return this.matrix[n][m][indexOfMax(this.matrix[n][m])]
-    }
-
-    targetAtPos(targets) {
-        return targets.length > 0
     }
 
     getCordsForPos = (pos) => {
@@ -40,8 +34,6 @@ class RatingMatrix {
 
     getBestAction(pos) {
         const { n, m } = this.getCordsForPos(pos)
-
-
         return indexOfMax(this.matrix[n][m])
     }
 
@@ -72,10 +64,6 @@ indexOfMax = (arr) => {
     return maxIndex;
 }
 
-fieldWrapper = (matrix, n, m) => {
-    return matrix[n] && typeof matrix[n][m] !== 'undefined' ? matrix[n][m] : 0
-}
-
 initMatrix = (res) => {
     const m = []
     for (let i = 0; i < res; i++) {
@@ -92,7 +80,3 @@ initMatrix = (res) => {
     }
     return m
 }
-
-
-
-//module.exports = RatingMatrix
