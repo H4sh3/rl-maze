@@ -13,32 +13,19 @@ class RatingMatrix {
         this.minReward = reward < this.minReward ? reward : this.minReward
         const { n, m } = this.getCordsForPos(pos)
 
-        if (this.targetAtPos(targets)) {
-            this.matrix[n][m].hasTarget[action] = reward
-        } else {
-            this.matrix[n][m].noTarget[action] = reward
-        }
+        this.matrix[n][m][action] = reward
     }
 
 
     getMatrixAtPos(pos, targets) {
         const { n, m } = this.getCordsForPos(pos)
-
-        if (this.targetAtPos(targets)) {
-            return this.matrix[n][m].hasTarget
-        } else {
-            return this.matrix[n][m].noTarget
-        }
+        return this.matrix[n][m]
     }
 
-    getHighestRewardAtPos(pos, targets) {
+    getHighestRewardAtPos(pos) {
         const { n, m } = this.getCordsForPos(pos)
 
-        if (this.targetAtPos(targets)) {
-            return this.matrix[n][m].hasTarget[indexOfMax(this.matrix[n][m].hasTarget)]
-        } else {
-            return this.matrix[n][m].noTarget[indexOfMax(this.matrix[n][m].noTarget)]
-        }
+        return this.matrix[n][m][indexOfMax(this.matrix[n][m])]
     }
 
     targetAtPos(targets) {
@@ -51,15 +38,11 @@ class RatingMatrix {
         return { n, m }
     }
 
-    getBestAction(pos, targets) {
+    getBestAction(pos) {
         const { n, m } = this.getCordsForPos(pos)
 
 
-        if (this.targetAtPos(targets)) {
-            return indexOfMax(this.matrix[n][m].hasTarget)
-        } else {
-            return indexOfMax(this.matrix[n][m].noTarget)
-        }
+        return indexOfMax(this.matrix[n][m])
     }
 
     getDrawParams() {
@@ -67,13 +50,8 @@ class RatingMatrix {
     }
 }
 
-getBestActionForCords = (matrix, n, m, targets) => {
-    if (this.targetAtPos(targets)) {
-        return indexOfMax(matrix[n][m].hasTarget)
-    } else {
-        return indexOfMax(matrix[n][m].noTarget)
-    }
-
+getBestActionForCords = (matrix, n, m) => {
+    return indexOfMax(matrix[n][m])
 }
 
 indexOfMax = (arr) => {
@@ -103,20 +81,12 @@ initMatrix = (res) => {
     for (let i = 0; i < res; i++) {
         let n = []
         for (let j = 0; j < res; j++) {
-            n.push({
-                hasTarget: [
-                    0,
-                    0,
-                    0,
-                    0,
-                ],
-                noTarget: [
-                    0,
-                    0,
-                    0,
-                    0,
-                ]
-            })
+            n.push([
+                0,
+                0,
+                0,
+                0,
+            ])
         }
         m.push(n)
     }

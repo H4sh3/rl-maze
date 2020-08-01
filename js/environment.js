@@ -9,10 +9,6 @@ class Environment {
         this.e;
     }
 
-    getProperties() {
-        return { bW: this.ratingMatrix.blockWidth, bH: this.ratingMatrix.blockHeight }
-    }
-
     run() {
         const oldPos = this.agent.pos.copy()
         const action = this.agent.update(this.ratingMatrix, this.targets)
@@ -86,6 +82,10 @@ class Environment {
 
     done() {
         return this.targets.length === 0;
+    }
+
+    getProperties() {
+        return { bW: this.ratingMatrix.blockWidth, bH: this.ratingMatrix.blockHeight }
     }
 
     checkCollision(boxes, agent) {

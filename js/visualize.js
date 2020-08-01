@@ -36,10 +36,10 @@ drawDirectionArrows = (matrix, n, m, blockWidth, blockHeight, maxReward, minRewa
         f[i]()
     }
 
-    const maxIndex = indexOfMax(matrix[n][m].hasTarget)
+    const maxIndex = indexOfMax(matrix[n][m])
     stroke(255, 255, 255)
-    if (matrix[n][m].hasTarget[maxIndex]) {
-        const g = map(matrix[n][m].hasTarget[maxIndex], minReward, maxReward, 0, 255)
+    if (matrix[n][m][maxIndex]) {
+        const g = map(matrix[n][m][maxIndex], minReward, maxReward, 0, 255)
         fill(0, g, 0)
     } else {
         fill(255, 255, 255)
