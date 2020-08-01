@@ -1,7 +1,11 @@
 let environment
 let statistic
+let fRate
 
 setup = () => {
+    fRate = 60
+    frameRate(fRate)
+
     initCanvas()
     environment = new Environment()
     environment.init()
@@ -27,6 +31,25 @@ draw = () => {
             environment.reset()
         }
     }
+}
+
+resetBtnClick = () => {
+    environment.init()
+    statistic = new Statistic(environment.getProperties())
+}
+
+fasterBtnClick = () => {
+    fRate = fRate < 60 ? fRate + 5 : fRate
+    updateFrameRate()
+}
+
+slowerBtnClick = () => {
+    fRate = fRate > 5 ? fRate - 5 : fRate
+    updateFrameRate()
+}
+
+updateFrameRate = () => {
+    frameRate(fRate)
 }
 
 initCanvas = () => {
