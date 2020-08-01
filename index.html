@@ -1,8 +1,64 @@
-<script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
-<script src="js/statistic.js"></script>
-<script src="js/agent.js"></script>
-<script src="js/box.js"></script>
-<script src="js/environment.js"></script>
-<script src="js/ratingMatrix.js"></script>
-<script src="js/visualize.js"></script>
-<script src="sketch.js"></script>
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.css" rel="stylesheet">
+    <script src="js/statistic.js"></script>
+    <script src="js/agent.js"></script>
+    <script src="js/box.js"></script>
+    <script src="js/environment.js"></script>
+    <script src="js/ratingMatrix.js"></script>
+    <script src="js/visualize.js"></script>
+    <script src="sketch.js"></script>
+</head>
+
+<style>
+    @media only screen and (min-width : 100px) {
+        .canvas-div {
+            width: 80%
+        }
+    }
+
+    @media only screen and (min-width : 1224px) {
+        .canvas-div {
+            width: 50%
+        }
+    }
+</style>
+
+<body style="touch-action: manipulation">
+    <div class="container">
+        <center>
+
+            <div class="is-size-5" style="margin-top:1rem">
+                Reinforcement learning vs Maze
+            </div>
+            <div class="box">
+                <div class="level-item">
+                    <div class="canvas-div" id="p5canvas"></div>
+                    <p style="margin-left:1rem; text-align: justify" >
+                         <b>Description</b><br>
+                         The agent gets trained to reach the goal on the lower screen. <br>
+                         Each field stores 4 action-ratings (up,down,left,right).<br>
+                         The arrows indicate which action has the highest rating.<br>
+
+                         The agent explores the environment by sometimes choosing random actions.<br>
+                         But most of the time it performs the action with the highest rating.<br>
+                         After a little while the action-ratings got adjusted to reach the goal with as little steps possible.<br>
+                    </p>
+                </div>
+
+                <div class="level-item">
+                    <button class="button is-info" id="colorpicker" type="text">Color</button>
+                    <div style="width: 2rem"></div>
+                    <button class="button is-success" id="getTokenBtn" onclick="getToken()">Get token</button>
+                </div>
+            </div>
+        </center>
+    </div>
+    </div>
+</body>
+
+</html>
