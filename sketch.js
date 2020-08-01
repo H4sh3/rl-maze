@@ -13,7 +13,7 @@ setup = () => {
 }
 
 draw = () => {
-    if (environment.e < 25 || environment.e % 25 !== 1) {
+    if (environment.e < 25 || environment.e % 10 !== 1) {
         while (environment.running()) {
             environment.run()
         }
@@ -30,6 +30,7 @@ draw = () => {
             environment.e++
             environment.reset()
         }
+        text(`Episode ${environment.e}`,width/2,20)
     }
 }
 

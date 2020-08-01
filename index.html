@@ -45,11 +45,12 @@
                         The agent gets trained to reach the goal on the lower screen. <br>
                         Each field stores 4 action-ratings (up,down,left,right).<br>
                         The arrows indicate which action has the highest rating.<br>
-
                         The agent explores the environment by sometimes choosing random actions.<br>
-                        But most of the time it performs the action with the highest rating.<br>
+                        Most of the time it performs the action with the highest rating.<br>
                         After a little while the action-ratings got adjusted to reach the goal with as little steps
                         possible.<br>
+                        After each episode we run 10 episodes without rendering to speed things up.
+                        
                         <br>
                         The code can be found here: <a href="https://github.com/H4sh3/RL-Maze">Github</a>
                     </p>
