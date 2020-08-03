@@ -33,6 +33,7 @@ draw = () => {
         environment.agent.explore = false
         if (environment.running()) {
             environment.run()
+            environment.draw()
         } else {
             environment.init()
             stepsTaken = { min: Infinity, count: 0 }
@@ -53,12 +54,12 @@ draw = () => {
             stepsTaken.min = statistic.minI
             stepsTaken.count = 0
         }
-
+        
+        environment.draw()
         environment.e++
         environment.reset()
         environment.target = getTarget()
     }
-    environment.draw()
     statistic.draw()
 }
 
