@@ -98,7 +98,7 @@ drawAgent = (pos, bW, bH) => {
 
 drawStatistic = (data, props, width, height, maxI, minI) => {
     push()
-    translate(props.bW * 8, props.bH * 1.7)
+    translate(props.bW * 8, props.bH * 1.0)
     fill(255)
     rect(0, 0, width*1.5, height)
     for (let i = 1; i < data.length - 1; i++) {
@@ -114,7 +114,6 @@ drawStatistic = (data, props, width, height, maxI, minI) => {
 
     noStroke()
     fill(0)
-    text(`Max Steps: ${maxI}`, props.bW * 4.5, props.bH * 0.1)
-    text(`Min Steps: ${minI}`, props.bW * 4.5, props.bH)
+    text(`Steps: ${minI}`, props.bW * 4.5, props.bH * 1)
     pop()
 }

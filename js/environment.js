@@ -8,7 +8,7 @@ class Environment {
         this.i;
         this.e;
         this.targetFound = false
-        this.showAllQValues = true
+        this.showAllQValues = false
 
         this.maze = initMaze(this.res)
         this.maze = addBorders(this.maze)
