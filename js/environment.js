@@ -8,6 +8,7 @@ class Environment {
         this.i;
         this.e;
         this.targetFound = false
+        this.showAllQValues = true
 
         this.maze = initMaze(this.res)
         this.maze = addBorders(this.maze)
@@ -43,7 +44,7 @@ class Environment {
 
     draw() {
         background(255)
-        drawMatrix(...this.qTable.getDrawParams())
+        drawMatrix(...this.qTable.getDrawParams(),this.showAllQValues)
         drawMaze(this.maze, this.qTable.blockWidth, this.qTable.blockHeight)
         drawAgent(this.agent.pos, this.qTable.blockWidth, this.qTable.blockHeight)
         drawTarget(this.target, this.qTable.blockWidth, this.qTable.blockHeight)

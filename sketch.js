@@ -47,23 +47,23 @@ draw = () => {
         if (environment.i > 1) {
             statistic.add(environment.i)
         }
-        
+
         if (statistic.minI === stepsTaken.min) {
             stepsTaken.count += 1
         } else {
             stepsTaken.min = statistic.minI
             stepsTaken.count = 0
         }
-        
+
         environment.e++
         environment.reset()
         environment.draw()
         environment.target = getTarget()
         noStroke()
         fill(0)
-        text('Learning...',width/2,environment.qTable.blockHeight*0.8)
+        text('Learning...', width / 2, environment.qTable.blockHeight * 0.8)
     }
-    statistic.draw()
+    drawStatistic(...statistic.getProps())
 }
 
 
@@ -89,4 +89,8 @@ initCanvas = () => {
     canvasH = width
     canvas = createCanvas(canvasW, canvasH)
     canvas.parent('p5canvas');
+}
+
+showQvalues = () => {
+    environment.showAllQValues = !environment.showAllQValues
 }

@@ -9,32 +9,14 @@ class Statistic {
         this.minI = Infinity
     }
 
-    draw() {
-        push()
-        translate(this.props.bW * 8, this.props.bH*1.7)
-        fill(255)
-        rect(0, 0, this.width, this.height)
-        for (let i = 1; i < this.data.length-1; i++) {
-            const x1 = map(i-1, 0, this.data.length, 0, this.width)
-            const y1 = map(this.data[i-1], 0, this.maxI, 0, this.height)
-
-            const x2 = map(i, 0, this.data.length, 0, this.width)
-            const y2 = map(this.data[i], 0, this.maxI, 0, this.height)
-
-            stroke(1)
-            line(x1,this.height-y1,x2,this.height-y2)
-        }
-        
-        noStroke()
-        fill(0)
-        text(`Max Steps: ${this.maxI}`,this.props.bW*4.5,this.props.bH*0.1)
-        text(`Min Steps: ${this.minI}`,this.props.bW*4.5,this.props.bH)
-        pop()
-    }
 
     add(i) {
         this.minI = i < this.minI ? i : this.minI
         this.maxI = i > this.maxI ? i : this.maxI
         this.data.push(i)
+    }
+
+    getProps(){
+        return [this.data, this.props, this.width, this.height, this.maxI, this.minI]
     }
 }

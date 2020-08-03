@@ -1,18 +1,18 @@
-drawMatrix = (matrix, minReward, maxReward, blockWidth, blockHeight) => {
+drawMatrix = (matrix, minReward, maxReward, blockWidth, blockHeight, showAll) => {
     for (let m = 0; m < matrix.length; m++) {
         for (let n = 0; n < matrix[m].length; n++) {
-            drawDirectionArrow(matrix, m, n, blockWidth, blockHeight, minReward, maxReward)
+            drawDirectionArrow(matrix, m, n, blockWidth, blockHeight, minReward, maxReward, showAll)
         }
     }
 }
 
-drawDirectionArrow = (matrix, m, n, blockWidth, blockHeight, minReward, maxReward) => {
+drawDirectionArrow = (matrix, m, n, blockWidth, blockHeight, minReward, maxReward, showAll) => {
     const aW = blockWidth / 2
     const aH = blockHeight / 2
 
     const maxIndex = indexOfMax(matrix[m][n])
     stroke(255, 255, 255)
-    if (matrix[m][n][maxIndex] > maxReward*0.01) {
+    if (matrix[m][n][maxIndex] > maxReward * 0.01 || showAll) {
         const g = map(matrix[m][n][maxIndex], minReward, maxReward, 0, 255)
         fill(0, g, 0)
     } else {
@@ -94,4 +94,27 @@ drawAgent = (pos, bW, bH) => {
     noStroke()
     fill(255, 120, 0)
     rect(pos.m * bW, pos.n * bH, bW, bH)
+}
+
+drawStatistic = (data, props, width, height, maxI, minI) => {
+    push()
+    translate(props.bW * 8, props.bH * 1.7)
+    fill(255)
+    rect(0, 0, width*1.5, height)
+    for (let i = 1; i < data.length - 1; i++) {
+        const x1 = map(i - 1, 0, data.length, 0, width)
+        const y1 = map(data[i - 1], 0, maxI, 0, height)
+
+        const x2 = map(i, 0, data.length, 0, width)
+        const y2 = map(data[i], 0, maxI, 0, height)
+
+        stroke(1)
+        line(x1, height - y1, x2, height - y2)
+    }
+
+    noStroke()
+    fill(0)
+    text(`Max Steps: ${maxI}`, props.bW * 4.5, props.bH * 0.1)
+    text(`Min Steps: ${minI}`, props.bW * 4.5, props.bH)
+    pop()
 }
