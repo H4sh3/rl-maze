@@ -12,7 +12,7 @@ drawDirectionArrow = (matrix, m, n, blockWidth, blockHeight, minReward, maxRewar
 
     const maxIndex = indexOfMax(matrix[m][n])
     stroke(255, 255, 255)
-    if (matrix[m][n][maxIndex] > maxReward*0.5) {
+    if (matrix[m][n][maxIndex] > maxReward*0.01) {
         const g = map(matrix[m][n][maxIndex], minReward, maxReward, 0, 255)
         fill(0, g, 0)
     } else {

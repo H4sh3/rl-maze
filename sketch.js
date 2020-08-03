@@ -14,8 +14,8 @@ setup = () => {
         { m: res - 2, n: res - 2 },
         { m: res - 2, n: 8 }
     ]
-    targetPosIndex = 0
-    fRate = 25
+    targetPosIndex = Math.floor(random(targetPositions.length))
+    fRate = 40
     frameRate(fRate)
 
     initCanvas()
@@ -39,7 +39,7 @@ draw = () => {
             stepsTaken = { min: Infinity, count: 0 }
             statistic = new Statistic(environment.getProperties())
         }
-    } else { 
+    } else {
         // learning
         while (environment.running()) {
             environment.run()
@@ -47,7 +47,7 @@ draw = () => {
         if (environment.i > 1) {
             statistic.add(environment.i)
         }
-
+        
         if (statistic.minI === stepsTaken.min) {
             stepsTaken.count += 1
         } else {
@@ -55,10 +55,13 @@ draw = () => {
             stepsTaken.count = 0
         }
         
-        environment.draw()
         environment.e++
         environment.reset()
+        environment.draw()
         environment.target = getTarget()
+        noStroke()
+        fill(0)
+        text('Learning...',width/2,125)
     }
     statistic.draw()
 }

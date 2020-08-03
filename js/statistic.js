@@ -11,7 +11,7 @@ class Statistic {
 
     draw() {
         push()
-        translate(this.props.bW * 15, this.props.bH)
+        translate(this.props.bW * 10, this.props.bH*1.5)
         fill(255)
         rect(0, 0, this.width, this.height)
         for (let i = 1; i < this.data.length-1; i++) {
@@ -27,8 +27,8 @@ class Statistic {
         
         noStroke()
         fill(0)
-        text(`Max Steps: ${this.maxI}`,this.props.bW*1.5,this.props.bH*0.5)
-        text(`Min Steps: ${this.minI}`,this.props.bW*1.5,this.props.bH)
+        text(`Max Steps: ${this.maxI}`,this.props.bW*4.5,this.props.bH*0.5)
+        text(`Min Steps: ${this.minI}`,this.props.bW*4.5,this.props.bH)
         pop()
     }
 
