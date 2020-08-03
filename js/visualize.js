@@ -1,58 +1,58 @@
-drawMatrix = (matrix, maxReward, minReward, blockWidth, blockHeight) => {
-    for (let n = 0; n < matrix.length; n++) {
-        for (let m = 0; m < matrix[n].length; m++) {
-            drawDirectionArrow(matrix, n, m, blockWidth, blockHeight, maxReward, minReward)
+drawMatrix = (matrix, minReward, maxReward, blockWidth, blockHeight) => {
+    for (let m = 0; m < matrix.length; m++) {
+        for (let n = 0; n < matrix[m].length; n++) {
+            drawDirectionArrow(matrix, m, n, blockWidth, blockHeight, minReward, maxReward)
         }
     }
 }
 
-drawDirectionArrow = (matrix, n, m, blockWidth, blockHeight, maxReward, minReward) => {
+drawDirectionArrow = (matrix, m, n, blockWidth, blockHeight, minReward, maxReward) => {
     const aW = blockWidth / 2
     const aH = blockHeight / 2
 
-    const drawVertex = (i) => {
-        [() => {
-            vertex(aW, aH)
-            vertex(blockWidth, blockHeight)
-            vertex(0, blockHeight)
-        },
-        () => {
-            vertex(0, 0)
-            vertex(aW, aH)
-            vertex(blockWidth, 0)
-        },
-        () => {
-            vertex(blockWidth, 0)
-            vertex(aW, aH)
-            vertex(blockWidth, blockHeight)
-        },
-        () => {
-            vertex(0, 0)
-            vertex(aW, aH)
-            vertex(0, blockHeight)
-        }][i]()
-    }
-
-    const maxIndex = indexOfMax(matrix[n][m])
+    const maxIndex = indexOfMax(matrix[m][n])
     stroke(255, 255, 255)
-    if (matrix[n][m][maxIndex]) {
-        const g = map(matrix[n][m][maxIndex], minReward, maxReward, 0, 255)
+    if (matrix[m][n][maxIndex] > maxReward*0.5) {
+        const g = map(matrix[m][n][maxIndex], minReward, maxReward, 0, 255)
         fill(0, g, 0)
     } else {
         fill(255, 255, 255)
     }
 
     push()
-    const position = { x: blockWidth * n, y: blockHeight * m }
-    translate(position.x, position.y)
+    translate(blockWidth * m, blockHeight * n)
 
     beginShape()
 
     strokeWeight(0.5)
-    drawVertex(maxIndex)
+    drawVertex(maxIndex, aW, aH, blockWidth, blockHeight)
 
     endShape(CLOSE)
     pop()
+}
+
+
+drawVertex = (i, aW, aH, blockWidth, blockHeight) => {
+    [() => {
+        vertex(aW, aH)
+        vertex(blockWidth, blockHeight)
+        vertex(0, blockHeight)
+    },
+    () => {
+        vertex(0, 0)
+        vertex(aW, aH)
+        vertex(blockWidth, 0)
+    },
+    () => {
+        vertex(blockWidth, 0)
+        vertex(aW, aH)
+        vertex(blockWidth, blockHeight)
+    },
+    () => {
+        vertex(0, 0)
+        vertex(aW, aH)
+        vertex(0, blockHeight)
+    }][i]()
 }
 
 getMinRmaxR = (arr) => {
@@ -70,30 +70,28 @@ getMinRmaxR = (arr) => {
     return { minR, maxR }
 }
 
-// boxes
-drawBoxes = (boxes) => {
-    for (let b of boxes) {
-        drawBox(b.pos, b.size)
+// Maze
+drawMaze = (maze, bW, bH) => {
+    noStroke(0)
+    for (let m = 0; m < maze.length; m++) {
+        for (let n = 0; n < maze[m].length; n++) {
+            if (maze[m][n]) {
+                fill(120, 120, 120)
+                rect(m * bW, n * bH, bW, bH)
+            }
+        }
     }
 }
 
-drawTargets = (targets, bW, bH) => {
-    for (let b of targets) {
-        fill(255, 0, 0)
-        noStroke()
-        ellipse(bW * 0.5 + (b.n * bW), bH * 0.5 + (b.m * bH), 15, 15)
-    }
-}
-
-drawBox = (pos, size) => {
-    stroke(0)
-    fill(120, 120, 120)
-    strokeWeight(3)
-    rect(pos.x, pos.y, size.x, size.y)
-}
-
-drawAgent = (pos, size) => {
+drawTarget = (t, bW, bH) => {
+    fill(255, 0, 0)
     noStroke()
-    fill(0)
-    rect(pos.x - size / 2, pos.y - size / 2, size, size)
+    ellipse(t.m * bW + bW / 2, t.n * bH + bH / 2, bW, bH)
+
+}
+
+drawAgent = (pos, bW, bH) => {
+    noStroke()
+    fill(255, 120, 0)
+    rect(pos.m * bW, pos.n * bH, bW, bH)
 }

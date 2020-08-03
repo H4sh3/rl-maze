@@ -7,9 +7,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.css" rel="stylesheet">
     <script src="js/statistic.js"></script>
     <script src="js/agent.js"></script>
-    <script src="js/box.js"></script>
+    <script src="js/maze.js"></script>
     <script src="js/environment.js"></script>
-    <script src="js/ratingMatrix.js"></script>
+    <script src="js/qtable.js"></script>
     <script src="js/visualize.js"></script>
     <script src="sketch.js"></script>
 </head>
@@ -31,36 +31,25 @@
 <body>
     <div class="container">
         <center>
-
             <div class="is-size-5" style="margin-top:1rem">
                 Reinforcement Learning a Maze
             </div>
             <div class="box">
                 <div class="level-item">
                     <div class="canvas-div" id="p5canvas"></div>
-
-
                     <p style="margin-left:1rem; text-align: justify">
                         <b>Description</b><br>
-                        The agent gets trained to reach the goal on the lower screen. <br>
-                        Each field stores 4 action-ratings (up,down,left,right).<br>
+                        The agent gets trained to reach the red goal. <br>
+                        Each iteration the reward from reaching the target traces further in the Q-Table.<br>
                         The arrows indicate which action has the highest rating.<br>
                         The agent explores the environment by sometimes choosing random actions.<br>
-                        Most of the time it performs the action with the highest rating.<br>
-                        After the action-ratings got adjusted, the agent reaches the goal with as little steps
-                        possible.<br>
-                        After each episode we run 10 episodes without rendering to speed things up.
                         <br>
-                        <br>
-                        The code can be found at <a href="https://github.com/H4sh3/RL-Maze">Github</a>.
+                        The code can be found at <a href="https://github.com/H4sh3/RL-Maze">github</a>.
                     </p>
                 </div>
                 <div class="level-left">
-                    <button class="button is-info" type="text" onclick="resetBtnClick()">Reset</button>
+                    <button class="button is-info" type="text" onclick="changeTarget()">Change Target</button>
                     <div style="width: 2rem"></div>
-                    <button class="button is-success" id="fasterBtn" onclick="fasterBtnClick()">Faster</button>
-                    <div style="width: 2rem"></div>
-                    <button class="button is-success" id="slowerBtn" onclick="slowerBtnClick()">Slower</button>
                 </div>
 
             </div>

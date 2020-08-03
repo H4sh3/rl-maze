@@ -24,11 +24,11 @@ class Statistic {
             stroke(1)
             line(x1,this.height-y1,x2,this.height-y2)
         }
-
+        
         noStroke()
         fill(0)
-        text(`Max Steps: ${this.maxI}`,this.props.bW*2.5,this.props.bH*0.5)
-        text(`Min Steps: ${this.minI}`,this.props.bW*2.5,this.props.bH)
+        text(`Max Steps: ${this.maxI}`,this.props.bW*1.5,this.props.bH*0.5)
+        text(`Min Steps: ${this.minI}`,this.props.bW*1.5,this.props.bH)
         pop()
     }
 
