@@ -61,7 +61,7 @@ draw = () => {
         environment.target = getTarget()
         noStroke()
         fill(0)
-        text('Learning...',width/2,125)
+        text('Learning...',width/2,environment.qTable.blockHeight*0.8)
     }
     statistic.draw()
 }
