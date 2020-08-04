@@ -3,15 +3,7 @@
 <html>
 
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.css" rel="stylesheet">
-    <script src="js/statistic.js"></script>
-    <script src="js/agent.js"></script>
-    <script src="js/maze.js"></script>
-    <script src="js/environment.js"></script>
-    <script src="js/qtable.js"></script>
-    <script src="js/visualize.js"></script>
-    <script src="sketch.js"></script>
 </head>
 
 <style>
@@ -35,22 +27,11 @@
                 Reinforcement Learning Maze
             </div>
             <div class="box">
-                <div class="canvas-div" id="p5canvas"></div>
                 <div class="level-item">
-                    <p style="margin-left:1rem; text-align: justify">
-                        <b>Description</b><br>
-                        The agent gets a reward for reaching the red goal. <br>
-                        Each iteration the reward from reaching the target reaches further back in the Q-Table.<br>
-                        The arrows indicate which action has the highest rating.<br>
-                        <br>
-                        The code can be found at <a href="https://github.com/H4sh3/RL-Maze">github</a>.
-                    </p>
+                    <a href="/v1">Maze-v1</a>
                 </div>
-                <div class="level-left">
-                    <button class="button is-info" type="text" onclick="changeTarget()">Change Target</button>
-                    <div style="width: 2rem"></div>
-                    <button class="button is-info" type="text" onclick="showQvalues()">Show all Q-Values</button>
-                    <div style="width: 2rem"></div>
+                <div class="level-item">
+                    <a href="/v2">Maze-v2</a>
                 </div>
             </div>
         </center>
