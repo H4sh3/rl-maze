@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.css" rel="stylesheet">
+    <script src="js/statistic.js"></script>
+    <script src="js/agent.js"></script>
+    <script src="js/maze.js"></script>
+    <script src="js/environment.js"></script>
+    <script src="js/qtable.js"></script>
+    <script src="js/visualize.js"></script>
+    <script src="sketch.js"></script>
+</head>
+
+<style>
+    @media only screen and (min-width : 100px) {
+        .canvas-div {
+            width: 80%
+        }
+    }
+
+    @media only screen and (min-width : 1222px) {
+        .canvas-div {
+            width: 50%
+        }
+    }
+</style>
+
+<body>
+    <div class="container">
+        <center>
+            <div class="is-size-5" style="margin-top:1rem">
+                Reinforcement Learning Maze
+            </div>
+            <div class="box">
+                <div class="canvas-div" id="p5canvas"></div>
+                <div class="level-item">
+                    <button class="button is-info" type="text" onclick="changeKeyPos()">Change Key</button>
+                    <div style="width: 2rem"></div>
+                    <button class="button is-info" type="text" onclick="showQvalues()">Show all Q-Values</button>
+                    <div style="width: 2rem"></div>
+                </div>
+                <div class="level-item">
+                    <p style="margin-left:1rem; text-align: justify">
+                        <b>Description</b><br>
+                        This time the maze got more complex by adding a K(ey) and a D(oor).<br>
+                        The door only opens if the agent has found the key.<br>
+
+                        In terms of the Q-Table this is realised by adding an additional dimension.<br>
+                        Instead of accessing the action ratings for a position, we also include if the key has been optained or not.<br>
+
+                        This is a crucial point of Q-Learning, the state of the environment is directly related with the Q-Table. <br>
+
+                        <br>
+                        The code can be found at <a href="https://github.com/H4sh3/RL-Maze-2">github</a>.
+                    </p>
+                </div>
+            </div>
+        </center>
+    </div>
+    </div>
+</body>
+
+</html>
