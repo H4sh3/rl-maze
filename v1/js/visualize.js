@@ -6,31 +6,54 @@ drawMatrix = (matrix, minReward, maxReward, blockWidth, blockHeight, showAll) =>
     }
 }
 
-drawDirectionArrow = (matrix, m, n, blockWidth, blockHeight, minReward, maxReward, showAll) => {
+drawDirectionArrow = (matrix, m, n, blockWidth, blockHeight, minReward, maxReward, showAll, hasKey) => {
     const aW = blockWidth / 2
     const aH = blockHeight / 2
 
-    const maxIndex = indexOfMax(matrix[m][n])
-    stroke(255, 255, 255)
-    if (matrix[m][n][maxIndex] > maxReward * 0.01 || showAll) {
-        const g = map(matrix[m][n][maxIndex], minReward, maxReward, 0, 255)
-        fill(0, g, 0)
+    const actionValues = matrix[m][n]
+
+    if (showAll) {
+        stroke(255, 255, 255)
+
+        for (let i = 0; i < actionValues.length; i++) {
+            const g = map(actionValues[i], minReward, maxReward, 0, 255)
+            fill(0, g, 0)
+
+            push()
+            translate(blockWidth * m, blockHeight * n)
+
+            beginShape()
+
+            strokeWeight(0.5)
+
+            drawVertex(i, aW, aH, blockWidth, blockHeight)
+
+            endShape(CLOSE)
+            pop()
+        }
     } else {
-        fill(255, 255, 255)
+        const maxIndex = indexOfMax(actionValues)
+        stroke(255, 255, 255)
+        if (actionValues[maxIndex] > maxReward * 0.01) {
+            const g = map(actionValues[maxIndex], minReward, maxReward, 0, 255)
+            fill(0, g, 0)
+        } else {
+            fill(255, 255, 255)
+        }
+
+        push()
+        translate(blockWidth * m, blockHeight * n)
+
+        beginShape()
+
+        strokeWeight(0.5)
+
+        drawVertex(maxIndex, aW, aH, blockWidth, blockHeight)
+
+        endShape(CLOSE)
+        pop()
     }
-
-    push()
-    translate(blockWidth * m, blockHeight * n)
-
-    beginShape()
-
-    strokeWeight(0.5)
-    drawVertex(maxIndex, aW, aH, blockWidth, blockHeight)
-
-    endShape(CLOSE)
-    pop()
 }
-
 
 drawVertex = (i, aW, aH, blockWidth, blockHeight) => {
     [() => {
@@ -100,7 +123,7 @@ drawStatistic = (data, props, width, height, maxI, minI) => {
     push()
     translate(props.bW * 8, props.bH * 1.0)
     fill(255)
-    rect(0, 0, width*1.5, height)
+    rect(0, 0, width * 1.5, height)
     for (let i = 1; i < data.length - 1; i++) {
         const x1 = map(i - 1, 0, data.length, 0, width)
         const y1 = map(data[i - 1], 0, maxI, 0, height)
