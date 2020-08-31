@@ -49,7 +49,6 @@ draw = () => {
     } else {
         // learning
         while (environment.running()) {
-            // console.log(`environment.i  ${environment.i}`)
             environment.run()
         }
 
