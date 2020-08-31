@@ -68,8 +68,11 @@ draw = () => {
         environment.draw()
         environment.target = getTarget()
         noStroke()
-        fill(0)
-        text('Learning...', width / 2, environment.qTable.blockHeight * 0.8)
+        fill(120,0,120)
+        rect(width / 1.5, height/6+12,200,30)
+        fill(255)
+        textSize(25)
+        text('Learning...', width / 1.5+25, height/6+34)
     }
     drawStatistic(...statistic.getProps())
 }

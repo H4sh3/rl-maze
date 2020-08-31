@@ -10,49 +10,52 @@ drawDirectionArrow = (matrix, m, n, blockWidth, blockHeight, minReward, maxRewar
     const aW = blockWidth / 2
     const aH = blockHeight / 2
 
-    const actionValues = hasKey ? matrix[m][n].hasKey : matrix[m][n].noKey
 
-    if (showAll) {
-        stroke(255, 255, 255)
+    let actionValues = matrix[m][n].hasKey
 
-        for (let i = 0; i < actionValues.length; i++) {
-            const g = map(actionValues[i], minReward, maxReward, 0, 255)
-            fill(0, g, 0)
-
-            push()
-            translate(blockWidth * m, blockHeight * n)
-
-            beginShape()
-
-            strokeWeight(0.5)
-
-            drawVertex(i, aW, aH, blockWidth, blockHeight)
-
-            endShape(CLOSE)
-            pop()
-        }
+    let maxIndex = indexOfMax(actionValues)
+    stroke(255, 255, 255)
+    if (actionValues[maxIndex] > maxReward * 0.01) {
+        const g = map(actionValues[maxIndex], minReward, maxReward, 0, 255)
+        fill(0, g, 0)
     } else {
-        const maxIndex = indexOfMax(actionValues)
-        stroke(255, 255, 255)
-        if (actionValues[maxIndex] > maxReward * 0.01) {
-            const g = map(actionValues[maxIndex], minReward, maxReward, 0, 255)
-            fill(0, g, 0)
-        } else {
-            fill(255, 255, 255)
-        }
-
-        push()
-        translate(blockWidth * m, blockHeight * n)
-
-        beginShape()
-
-        strokeWeight(0.5)
-
-        drawVertex(maxIndex, aW, aH, blockWidth, blockHeight)
-
-        endShape(CLOSE)
-        pop()
+        fill(255, 255, 255)
     }
+
+    push()
+    translate(blockWidth * m, blockHeight * n)
+
+    beginShape()
+
+    strokeWeight(0.5)
+
+    drawVertex(maxIndex, aW, aH, blockWidth, blockHeight)
+
+    endShape(CLOSE)
+    pop()
+
+
+    actionValues = matrix[m][n].noKey
+    maxIndex = indexOfMax(actionValues)
+    stroke(255, 255, 255)
+    if (actionValues[maxIndex] > maxReward * 0.01) {
+        const g = map(actionValues[maxIndex], minReward, maxReward, 0, 255)
+        fill(0, g, 0)
+    } else {
+        fill(255, 255, 255)
+    }
+
+    push()
+    translate(blockWidth * m, blockHeight * n)
+
+    beginShape()
+
+    strokeWeight(0.5)
+    drawVertex(maxIndex, aW, aH, blockWidth, blockHeight)
+
+    endShape(CLOSE)
+    pop()
+
 }
 
 
@@ -118,11 +121,11 @@ drawTarget = (t, bW, bH) => {
 drawAgent = (pos, bW, bH) => {
     noStroke()
     fill(255, 120, 0)
-    rect(pos.m * bW, pos.n * bH, bW, bH)
-    strokeWeight(0.3)
-    fill(0)
-    stroke(0)
-    text('A', pos.m * bW + bW / 2, pos.n * bH + bH / 2)
+    push()
+    translate(pos.m * bW, pos.n * bH)
+    rect(0, 0, bW, bH)
+    drawSymbol('A', bW / 2, bH / 2)
+    pop()
 }
 
 drawStatistic = (data, props, width, height, maxI, minI) => {
@@ -153,9 +156,7 @@ drawDoor = (pos, bW, bH) => {
     push()
     translate(pos.m * bW, pos.n * bH)
     rect(0, 0, bW, bH)
-    stroke(0)
-    fill(0)
-    text("D", bW / 2, bH / 2)
+    drawSymbol('D', bW / 2, bH / 2)
     pop()
 }
 
@@ -165,8 +166,14 @@ drawKey = (pos, bW, bH) => {
     push()
     translate(pos.m * bW, pos.n * bH)
     rect(0, 0, bW, bH)
+
+    drawSymbol('K', bW / 2, bH / 2)
+    pop()
+}
+
+drawSymbol = (t, x, y) => {
     stroke(0)
     fill(0)
-    text("K", bW / 2, bH / 2)
-    pop()
+    textSize(16)
+    text(t, x, y)
 }
