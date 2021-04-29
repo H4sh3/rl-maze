@@ -175,5 +175,5 @@ drawSymbol = (t, x, y) => {
     stroke(0)
     fill(0)
     textSize(16)
-    text(t, x, y)
+    text(t, x/2, y+y/3)
 }
