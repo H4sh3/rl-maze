@@ -15,7 +15,7 @@ drawDirectionArrow = (matrix, m, n, blockWidth, blockHeight, minReward, maxRewar
 
     let maxIndex = indexOfMax(actionValues)
     stroke(255, 255, 255)
-    if (actionValues[maxIndex] > maxReward * 0.01) {
+    if (actionValues[maxIndex] > maxReward * 0.01 || showAll) {
         const g = map(actionValues[maxIndex], minReward, maxReward, 0, 255)
         fill(0, g, 0)
     } else {
@@ -38,7 +38,7 @@ drawDirectionArrow = (matrix, m, n, blockWidth, blockHeight, minReward, maxRewar
     actionValues = matrix[m][n].noKey
     maxIndex = indexOfMax(actionValues)
     stroke(255, 255, 255)
-    if (actionValues[maxIndex] > maxReward * 0.01) {
+    if (actionValues[maxIndex] > maxReward * 0.01 || showAll) {
         const g = map(actionValues[maxIndex], minReward, maxReward, 0, 255)
         fill(0, g, 0)
     } else {
@@ -175,5 +175,5 @@ drawSymbol = (t, x, y) => {
     stroke(0)
     fill(0)
     textSize(16)
-    text(t, x/2, y+y/3)
+    text(t, x / 2, y + y / 3)
 }

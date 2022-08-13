@@ -32,7 +32,7 @@ setup = () => {
 }
 
 draw = () => {
-    if (stepsTaken.count > 50) {
+    if (stepsTaken.count > 20) {
 
         frameRate(10)
         // no faster routes found stop exploring
@@ -66,9 +66,10 @@ draw = () => {
         environment.reset()
         environment.draw()
         environment.target = getTarget()
+
         noStroke()
         fill(120, 0, 120)
-        rect(width / 1.5, height / 6 + 12, 200, 30)
+        rect(width / 1.5, height / 6 + 12, 185, 26)
         fill(255)
         textSize(25)
         text('Learning...', width / 1.5 + 25, height / 6 + 34)
