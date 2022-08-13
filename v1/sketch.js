@@ -15,8 +15,6 @@ setup = () => {
         { m: res - 2, n: 8 }
     ]
     targetPosIndex = Math.floor(random(targetPositions.length))
-    fRate = 40
-    frameRate(fRate)
 
     initCanvas()
     environment = new Environment(res)
@@ -29,6 +27,8 @@ setup = () => {
 
 draw = () => {
     if (stepsTaken.count > 50) {
+
+        frameRate(10)
         // no quicker routes found stop exploring
         environment.agent.explore = false
         if (environment.running()) {
